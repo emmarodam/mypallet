@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\TransportUnit;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +19,16 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        // Opret 10 trucks
+        TransportUnit::factory(10)->create([
+            'type' => 'truck',
+        ]);
+
+        // Opret 10 trailers
+        TransportUnit::factory(10)->create([
+            'type' => 'trailer',
         ]);
     }
 }

@@ -17,9 +17,19 @@
     </div>    
         <p>Search</p>
     
-        <h2>Trucks</h2>
-    
-        <h2>Trailers</h2>
+        <h2>Name (trucks)</h2>
+    <ul>
+        @foreach ($trucks as $truck)
+            <li>{{ $truck->name }}</li>
+        @endforeach
+    </ul>
+
+    <h2>Name (trailers)</h2>
+    <ul>
+        @foreach ($trailers as $trailer)
+            <li>{{ $trailer->name }}</li>
+        @endforeach
+    </ul>
         
 </main>
 

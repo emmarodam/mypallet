@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TransportUnit;
+
 
 class TransportUnitController extends Controller
 {
@@ -11,7 +13,10 @@ class TransportUnitController extends Controller
      */
     public function index()
     {
-        //
+        $trucks = TransportUnit::where('type', 'truck')->get();
+        $trailers = TransportUnit::where('type', 'trailer')->get();
+
+        return view('welcome', compact('trucks', 'trailers'));
     }
 
     /**
