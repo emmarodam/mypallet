@@ -2,52 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\TransportUnit;
-
+use Illuminate\Http\Request;
 
 class TransportUnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $trucks = TransportUnit::where('type', 'truck')->get();
-        $trailers = TransportUnit::where('type', 'trailer')->get();
+        // Initially load both trucks and trailers (for default view)
+        $transportUnits = TransportUnit::orderBy('type')->get();
 
-        return view('welcome', compact('trucks', 'trailers'));
+        return view('welcome', compact('transportUnits'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function getTrucks()
     {
-        //
+        // Filter for only trucks, sorted by type
+        $trucks = TransportUnit::where('type', 'truck')->orderBy('type')->get();
+        return view('partials.vehicle_list', compact('trucks'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function getTrailers()
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Filter for only trailers, sorted by type
+        $trailers = TransportUnit::where('type', 'trailer')->orderBy('type')->get();
+        return view('partials.vehicle_list', compact('trailers'));
     }
 }

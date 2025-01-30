@@ -8,4 +8,7 @@ use App\Http\Controllers\TransportUnitController;
 //     return view('welcome');
 // });
 
+
 Route::get('/', [TransportUnitController::class, 'index']);
+Route::get('/trucks', [TransportUnitController::class, 'getTrucks']);
+Route::get('/trailers', [TransportUnitController::class, 'getTrailers']);
