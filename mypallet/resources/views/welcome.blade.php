@@ -23,14 +23,7 @@
                 </li>
             </ul>
         </div>
-        
-        <!-- Search bar for filtering -->
-        <input type="text" id="search-bar" placeholder="Search..." 
-            hx-get="/trucks" 
-            hx-target="#vehicle-list" 
-            hx-swap="outerHTML" 
-            hx-trigger="keyup changed delay:500ms" 
-            name="search" />
+        <p>Search</p>
 
         <!-- Vehicle list will be updated dynamically here -->
         <div id="vehicle-list">
