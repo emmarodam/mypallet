@@ -23,14 +23,21 @@
                 </li>
             </ul>
         </div>
-        <p>Search</p>
+        
+        <!-- Search bar for filtering -->
+        <input type="text" id="search-bar" placeholder="Search..." 
+            hx-get="/trucks" 
+            hx-target="#vehicle-list" 
+            hx-swap="outerHTML" 
+            hx-trigger="keyup changed delay:500ms" 
+            name="search" />
 
         <!-- Vehicle list will be updated dynamically here -->
         <div id="vehicle-list">
             <h2>Trucks</h2>
             <ul>
                 @foreach ($transportUnits->where('type', 'truck') as $truck)
-                    <li>{{ $truck->name }}</li>
+                    <li>{{ $truck->name }} (Type: {{ $truck->type }})</li>
                 @endforeach
             </ul>
         </div>

@@ -1,3 +1,4 @@
+<!-- resources/views/partials/vehicle_list.blade.php -->
 <div id="vehicle-list">
     @if (isset($trucks))
         <h2>Trucks</h2>
