@@ -15,6 +15,10 @@ services:
       - db
     networks:
       - mypallet
+    ports:
+      - "5173:5173"  # Vite-porten
+    environment:
+      - VITE_APP_URL=${APP_URL}  
   
   web:
     image: nginx:alpine
@@ -22,7 +26,6 @@ services:
     restart: always
     ports:
       - "8000:80"
-      - "5173:5173"
     volumes:
       - .:/var/www/html
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro

@@ -7,34 +7,41 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>myPallet</title>
     <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-green-900 text-white">
+    <div id="app" class="min-h-screen flex flex-col items-center p-8">
+        <component-a></component-a>
 
-    <main>
-        <div>
-            <ul class="tabs">
-                <li>
-                    <a href="#" hx-get="/trucks" hx-target="#vehicle-list" hx-swap="outerHTML">Trucks</a>
-                </li>
-                <li>
-                    <a href="#" hx-get="/trailers" hx-target="#vehicle-list" hx-swap="outerHTML">Trailers</a>
-                </li>
-            </ul>
+        <!-- Tabs -->
+        <div class="w-full max-w-2xl flex">
+            <a href="#" hx-get="/trucks" hx-target="#vehicle-list" hx-swap="outerHTML"
+                class="flex-1 text-center py-4 font-bold uppercase transition-colors duration-300 bg-green-900 text-gray-100 hover:bg-green-700 active:text-green-900 active:bg-gray-100">
+                Trucks
+            </a>
+            <a href="#" hx-get="/trailers" hx-target="#vehicle-list" hx-swap="outerHTML"
+                class="flex-1 text-center py-4 font-bold uppercase transition-colors duration-300 bg-green-900 text-gray-100 hover:bg-green-700 active:text-green-900 active:bg-gray-100">
+                Trailers
+            </a>
         </div>
-        <p>Search</p>
 
-        <!-- Vehicle list will be updated dynamically here -->
-        <div id="vehicle-list">
-            <h2>Trucks</h2>
-            <ul>
-                @foreach ($transportUnits->where('type', 'truck') as $truck)
-                    <li>{{ $truck->name }}</li>
-                @endforeach
-            </ul>
+        <!-- Search Bar -->
+        <div class="m-6 w-full max-w-lg">
+            <div class="relative">
+                <input type="text" placeholder="Søg"
+                    class="w-full py-2 pl-10 pr-4 rounded-lg bg-gray-100 text-green-900 focus:outline-none">
+                <span class="absolute left-3 top-3 text-green-900">
+                    🔍
+                </span>
+            </div>
         </div>
-    </main>
+
+        <!-- Listen over units -->
+        <div id="vehicle-list" class="w-full max-w-lg mt-6">
+            
+        </div>
+    </div>
 </body>
 
 </html>

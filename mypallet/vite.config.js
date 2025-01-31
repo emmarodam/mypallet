@@ -3,20 +3,39 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: true,
-        }),
-        vue(),
-    ],
     server: {
-        host: '0.0.0.0', // Gør den tilgængelig fra andre enheder
-        allowedHosts: ['app', 'localhost', '127.0.0.1'], // Tillad anmodninger fra disse hosts
+        host: '0.0.0.0',
         port: 5173,
         strictPort: true,
         hmr: {
             host: 'localhost',
+            protocol: 'ws'
+        },
+        watch: {
+            usePolling: true
+        }
+    },
+    plugins: [
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+            },
+        }),
+        laravel({
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js',
+            ],
+            refresh: true,
+        }),
+    ],
+    resolve: {
+        alias: {
+            '@': '/resources/js',
+            'vue': 'vue/dist/vue.esm-bundler.js'
         },
     },
 });
